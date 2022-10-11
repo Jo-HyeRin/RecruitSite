@@ -16,4 +16,8 @@
 	VALUES(#{loginId}, #{loginPassword}, #{personalId}, #{companyId}, NOW())
 </insert>
 
+<select id="findByLoginId" resultType="Integer">
+	SELECT users_id FROM users WHERE login_id = #{loginId}
+</select>
+
 </mapper>

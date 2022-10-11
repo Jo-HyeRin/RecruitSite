@@ -57,6 +57,7 @@
 </div>
 
 <script>
+//회원가입 - 개인 ============================== //
 	$('#etc').change(function() {
 		var checked = $('#etc').is(':checked');
 		if (checked)
@@ -87,8 +88,36 @@
 			}
 		}).done((res) => {
 			alert("개인 회원가입 성공");
-			// location.href = "/loginForm";
+			location.href = "/loginForm";
 		});
+	});
+	
+	// 아이디 중복체크
+	let UsernameSameCheck = {
+		loginId : null,
+		isCheck : 0
+	}
+
+	$("#btnUsernameSameCheck").click(() => {
+		if ($("#loginId").val() == "") {
+			alert("아이디를 입력하여 주세요");
+			return;
+		} else {
+			let loginId = $("#loginId").val();
+			$.ajax("/checkId/" + loginId, {
+				type: "GET",
+				dataType: "JSON",
+			}).done((res) => {
+				if (res.code == 1) {
+					alert(res.message);
+					UsernameSameCheck.loginId = $("#loginId").val();
+					UsernameSameCheck.isCheck = true;
+				} else {
+					alert(res.message);
+					UsernameSameCheck.isCheck = false;
+				}
+			});
+		}
 	});
 </script>
 

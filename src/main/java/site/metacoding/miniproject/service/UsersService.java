@@ -75,5 +75,11 @@ public class UsersService {
 		Users users = new Users(personalJoinDto);
 		usersDao.insert(users);
 	}
+	
+	// 아이디 중복체크
+	public Integer checkUsersId(String loginId) {
+		Integer checkUsers = usersDao.findByLoginId(loginId);
+		return checkUsers;
+	}
 
 }

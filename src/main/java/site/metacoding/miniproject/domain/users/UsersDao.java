@@ -13,4 +13,7 @@ public interface UsersDao {
 
 	// 로그인
 	public Users findByIdAndPassword(@Param("loginId") String loginId, @Param("loginPassword") String loginPassword);
+	
+	// 아이디 중복체크
+	public Integer findByLoginId(String loginId);
 }

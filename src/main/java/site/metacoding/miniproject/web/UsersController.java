@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -52,4 +53,23 @@ public class UsersController {
 		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
 	}
 	
+	// 아이디 중복체크
+	@GetMapping("/checkId/{loginId}")
+	public @ResponseBody ResponseDto<?> usersIdSameCheck(@PathVariable String loginId) {
+
+		ResponseDto<?> responseDto;
+
+		if (loginId == null || loginId == "") {
+			responseDto = new ResponseDto<>(-1, "아이디를 입력하여 주세요", null);
+			return responseDto;
+		}
+
+		Integer usersCheck = usersService.checkUsersId(loginId);
+		if (usersCheck == null) {
+			responseDto = new ResponseDto<>(1, "아이디 중복 없음 사용하셔도 좋습니다.", null);
+		} else {
+			responseDto = new ResponseDto<>(-1, "아이디 중복이 확인됨", null);
+		}
+		return responseDto;
+	}
 }
