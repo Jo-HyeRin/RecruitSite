@@ -20,7 +20,7 @@ public class UsersController {
 	private final UsersService usersService;
 	private final HttpSession session;
 
-	// 로그인==============================================
+// 로그인==============================================
 	@GetMapping("/loginForm")
 	public String loginForm() {
 		return "/login";
@@ -33,12 +33,6 @@ public class UsersController {
 			return new ResponseDto<>(-1, "로그인실패", null);
 		session.setAttribute("principal", signedDto);
 		return new ResponseDto<>(1, "로그인완료", session.getAttribute("principal"));
-	}	
-	
-	// 로그아웃=============================================
-	@GetMapping("/logout")
-	public String logout() {
-		session.invalidate();
-		return "/";
-	}
+	}		
+
 }

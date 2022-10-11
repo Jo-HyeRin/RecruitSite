@@ -40,37 +40,32 @@
 		</div>
 	</form>
 </div>
+
 <script>
+	$("#btnLogin").click(() => {
+		let login_dto = {
+			loginId: $("#login_id").val(),
+			loginPassword: $("#login_password").val()
+		}
+		login(login_dto);
+	});
 
-			$("#btnLogin").click(() => {
-				let login_dto = {
-					loginId: $("#login_id").val(),
-					loginPassword: $("#login_password").val()
-				}
-				login(login_dto);
-			});
-
-			function login(login_dto) {
-				$.ajax("/login", {
-					type: "POST",
-					dataType: "JSON",
-					data: JSON.stringify(login_dto),
-					headers: {
-						"Content-Type": "application/JSON; charset=utf-8"
-					}
-				}).done((res) => {
-					if (res.code == 1) {
-						if (res.data.personalId != null) {
-							connectpersonal();
-						} else {
-							connectcompany();
-						}
-						location.href = "/";
-					}
-				});
+	function login(login_dto) {
+		$.ajax("/login", {
+			type: "POST",
+			dataType: "JSON",
+			data: JSON.stringify(login_dto),
+			headers: {
+				"Content-Type": "application/JSON; charset=utf-8"
 			}
+		}).done((res) => {
+			if (res.code == 1) {
+				location.href = "/";
+			}
+		});
+	}
+</script>
 
-		</script>
 </body>
 
 </html>
