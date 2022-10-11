@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,11 @@ public class IndexController {
 	public String index() {
 		return "index";
 	}
+	
+	@Value("${pic.path}")
+	// properties 에 설정한 경로 불러오기
+	// import org.springframework.beans.factory.annotation.Value !!!
+	private String uploadUrl;	
 		
 	@PostMapping("/upload")
 	public @ResponseBody String uploadPicture(@RequestPart MultipartFile file) {
@@ -25,9 +31,9 @@ public class IndexController {
 		String fileName = file.getOriginalFilename();
 		// System.out.println("fileName : "+fileName);
 		
-		// 받은 file을 어디에 등록하나? (하드디스크에 저장하려면 경로 폴더 지정)
-		String filePath = "C:\\Users\\GGG\\git\\RecruitSite\\src\\main\\resources\\static\\img\\" + fileName;
-		// System.out.println("filePath"+filePath);
+		// 받은 file을 어디에 저장하나? (경로 지정 - 불러온 설정 경로 넣어주기)
+		String filePath = uploadUrl + fileName;
+		// System.out.println(uploadUrl);
 		
 		// 파일 경로 담은 객체 만들기
 		File dest = new File(filePath);
