@@ -26,7 +26,7 @@
 
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav" style="width: 100%">	
-					<li class="nav-item"><a class="nav-link" href="#">로그인/회원가입</a></li>
+					<li class="nav-item"><a class="nav-link" href="/loginForm">로그인/회원가입</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">관심 이력서 보기</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"> 공고관리</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">기업정보</a></li>

@@ -4,9 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="site.metacoding.miniproject.domain.users.UsersDao">
 
-<select id="findAll" resultType="site.metacoding.miniproject.domain.users.Users">
-	SELECT * FROM users
+<select id="findByIdAndPassword"
+	resultType="site.metacoding.miniproject.domain.users.Users">
+	SELECT users_id, login_id, login_password, personal_id, company_id
+	FROM users
+	WHERE login_id = #{loginId} AND login_password=#{loginPassword}
 </select>
-
 
 </mapper>
