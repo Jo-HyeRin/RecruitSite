@@ -10,7 +10,7 @@ public class PersonalJoinDto {
 	private String loginPassword;
 	private String personalName;
 	private String personalEmail;
-	private String personalPhoneNumber;
+	private String personalPhoneNumber;;
 	private Boolean categoryFrontend;
 	private Boolean categoryBackend;
 	private Boolean categoryDevops;

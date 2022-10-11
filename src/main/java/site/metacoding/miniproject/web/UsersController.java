@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.service.UsersService;
 import site.metacoding.miniproject.web.dto.ResponseDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
+import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
 
 @RequiredArgsConstructor
@@ -35,5 +36,20 @@ public class UsersController {
 		session.setAttribute("principal", signedDto);
 		return new ResponseDto<>(1, "로그인완료", session.getAttribute("principal"));
 	}	
+	
+// 회원가입 - 개인 ============================== //
+	@GetMapping("/joinPersonal")
+	public String joinForm() {
+		return "/personal/join";
+	}
+
+	@PostMapping("/join/personal")
+	public @ResponseBody ResponseDto<?> joinPersonal(@RequestBody PersonalJoinDto personalJoinDto) {
+		usersService.joinPersonal(personalJoinDto);
+		LoginDto loginDto = new LoginDto(personalJoinDto);
+		SignedDto<?> signedDto = usersService.login(loginDto);
+		session.setAttribute("principal", signedDto);
+		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
+	}
 	
 }
