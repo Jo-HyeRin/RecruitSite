@@ -1,4 +1,4 @@
-package site.metacoding.miniproject.web;
+package site.metacoding.miniproject.web.dto;
 
 import lombok.Getter;
 import lombok.Setter;

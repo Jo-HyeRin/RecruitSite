@@ -11,7 +11,7 @@ public class CompanyDetail {
 	private Integer companyDetailId;
 	private Integer companyId;
 	private String companyEmail;
-	private String companyPhonenumber;
+	private String companyPhoneNumber;
 	private String companyPicture;
 	private String companyAddress;
 	private String location;

@@ -11,6 +11,6 @@ public class PersonalDetail {
 	private Integer personalDetailId;
 	private Integer personalId;
 	private String personalEmail;
-	private String personalPhonenumber;
+	private String personalPhoneNumber;
 	private Timestamp createdAt;
 }
