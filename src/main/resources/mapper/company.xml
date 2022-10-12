@@ -6,9 +6,15 @@
 
 	<select id="findById"
 		resultType="site.metacoding.miniproject.domain.company.Company">
-		SELECT company_id, company_name, company_category_id
+		SELECT company_id, company_name
 		FROM company
 		WHERE company_id = #{companyId}
 	</select>
+	
+	<insert id="insert" useGeneratedKeys="true"
+		keyProperty="companyId" keyColumn="company_id">
+		INSERT INTO company(company_name, created_at)
+		VALUES(#{companyName}, NOW())
+	</insert>
 
 </mapper>

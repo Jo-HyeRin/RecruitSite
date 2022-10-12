@@ -11,12 +11,12 @@
 			<button id="btnUsernameSameCheck" class="btn btn-warning"
 				type="button">아이디 중복체크</button>
 		</div>
+		
 		<div class="mb-3">
 			◆비밀번호 
 			<input id="loginPassword" type="password" class="form-control"
 				placeholder="비밀번호를 입력해주세요">
-		</div>
-		
+		</div>		
 		<div class="mb-3">
 			◆비밀번호 확인
 			<span id="passwordCheck" style="visibility: hidden; color: tomato;">
@@ -128,10 +128,10 @@
 		event.preventDefault();
 		if ($("#loginPassword").val() != $("#passwordConfirm").val()) {
 			$("#passwordCheck").css("visibility", "visible");
-			$("#btnSave").attr(`disabled`, true);
+			$("#btnJoin").attr(`disabled`, true);
 		} else {
 			$("#passwordCheck").css("visibility", "hidden");
-			$("#btnSave").removeAttr(`disabled`);
+			$("#btnJoin").removeAttr(`disabled`);
 		}
 	});
 	

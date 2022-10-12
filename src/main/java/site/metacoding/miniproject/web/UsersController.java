@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.miniproject.service.UsersService;
 import site.metacoding.miniproject.web.dto.ResponseDto;
+import site.metacoding.miniproject.web.dto.request.CompanyJoinDto;
 import site.metacoding.miniproject.web.dto.request.LoginDto;
 import site.metacoding.miniproject.web.dto.request.PersonalJoinDto;
 import site.metacoding.miniproject.web.dto.response.SignedDto;
@@ -68,8 +69,24 @@ public class UsersController {
 		if (usersCheck == null) {
 			responseDto = new ResponseDto<>(1, "아이디 중복 없음 사용하셔도 좋습니다.", null);
 		} else {
-			responseDto = new ResponseDto<>(-1, "아이디 중복이 확인됨", null);
+			responseDto = new ResponseDto<>(-1, "아이디 중복임 사용 불가합니다", null);
 		}
 		return responseDto;
 	}
+	
+// 회원가입 - 기업 ============================== //
+	@GetMapping("/joinCompany")
+	public String companyJoinForm() {
+		return "company/join";
+	}
+	
+	@PostMapping("/join/company")
+	public @ResponseBody ResponseDto<?> conpanyJoin(@RequestBody CompanyJoinDto companyJoinDto) {
+		usersService.joinCompany(companyJoinDto);
+		LoginDto loginDto = new LoginDto(companyJoinDto);
+		SignedDto<?> signedDto = usersService.login(loginDto);
+		session.setAttribute("principal", signedDto);
+		return new ResponseDto<>(1, "계정생성완료", session.getAttribute("principal"));
+	}
+	
 }

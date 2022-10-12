@@ -11,7 +11,6 @@ CREATE TABLE users (
 CREATE TABLE company (
   company_id integer AUTO_INCREMENT PRIMARY KEY,
   company_name varchar(20),
-  company_category_id integer,
   created_at timestamp
 );
 
@@ -227,8 +226,8 @@ CREATE PROCEDURE loopInsert()
 BEGIN
 DECLARE i INT DEFAULT 1;	
 WHILE i <= 50 DO	
-INSERT INTO company (company_name, company_category_id, created_at)
-VALUES(concat('companyname',i), if(i%4=0, 1, i%4),  NOW());
+INSERT INTO company (company_name, created_at)
+VALUES(concat('companyname',i), NOW());
 SET i = i + 1;
 END WHILE;
 END$$

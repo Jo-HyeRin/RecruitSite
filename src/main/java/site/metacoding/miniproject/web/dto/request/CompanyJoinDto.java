@@ -9,9 +9,10 @@ public class CompanyJoinDto {
     private String loginId;
     private String loginPassword;
     private String companyName;
-    private String companyEmail;
-    private String companyAddress;
     private String companyPhoneNumber;
+    private String companyEmail;
+    private String companyPicture;
+    private String companyAddress;
 
     // 계정생성용
     private Integer companyId;

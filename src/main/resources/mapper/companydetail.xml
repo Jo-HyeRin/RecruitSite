@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="site.metacoding.miniproject.domain.company.detail.CompanyDetailDao">
+
+	<insert id="insert" useGeneratedKeys="true"
+		keyProperty="companyId" keyColumn="company_id">
+		INSERT INTO company_detail (company_id, company_email,
+		company_phone_number, company_picture, company_address, created_at)
+		VALUES(#{companyId}, #{companyEmail}, #{companyPhoneNumber}, #{companyPicture}, #{companyAddress}, NOW())
+	</insert>
+
+</mapper>
