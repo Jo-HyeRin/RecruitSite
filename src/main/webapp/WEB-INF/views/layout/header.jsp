@@ -19,7 +19,7 @@
 <body>
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="/boards">Recruit Site</a>
+			<a class="navbar-brand" href="/index">Recruit Site</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -27,15 +27,11 @@
 			<div class="collapse navbar-collapse" id="collapsibleNavbar">
 				<ul class="navbar-nav" style="width: 100%">	
 					<li class="nav-item"><a class="nav-link" href="/loginForm">로그인</a></li>
+					<li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
 					<li class="nav-item"><a class="nav-link" href="/joinPersonal">개인회원가입</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">관심 이력서 보기</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"> 공고관리</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">기업정보</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">로그아웃</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">이력서관리</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">지원이력보기</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">내정보</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">로그아웃</a></li>			
+					<li class="nav-item"><a class="nav-link" href="/joinCompany">기업회원가입</a></li>
+					
+					<li class="nav-item"><a class="nav-link" href="#">기능추가하기</a></li>	
 				</ul>
 			</div>
 			

@@ -39,6 +39,13 @@ public class UsersController {
 		return new ResponseDto<>(1, "로그인완료", session.getAttribute("principal"));
 	}	
 	
+// 로그아웃 ============================== //
+	@GetMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "/index"; // 추후변경예정
+	}
+	
 // 회원가입 - 개인 ============================== //
 	@GetMapping("/joinPersonal")
 	public String joinForm() {

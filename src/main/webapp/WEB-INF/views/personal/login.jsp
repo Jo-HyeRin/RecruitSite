@@ -14,12 +14,13 @@
 		
 		<div class="mb-3 mt-3">
 			<h3>◆비밀번호</h3>
-			<input id="login_password" type="text" class="form-control" placeholder="Enter password">
+			<input id="login_password" type="password" class="form-control" placeholder="Enter password">
 		</div>
 
 		<div class="d-flex justify-content-around">
 			<button id="btnLogin" type="button" class="btn btn-primary">로그인</button>
-			<button id="btnJoin" type="button" class="btn btn-primary">회원가입</button>
+			<button id="btnPersonalJoin" type="button" class="btn btn-primary">개인회원가입</button>
+			<button id="btnCompanyJoin" type="button" class="btn btn-primary">기업회원가입</button>
 		</div>
 		
 	</form>
@@ -50,6 +51,15 @@
 			}
 		});
 	}
+
+	$("#btnPersonalJoin").click(()=>{
+		location.href = "/joinPersonal";
+	});
+	
+	$("#btnCompanyJoin").click(()=>{
+		location.href = "/joinCompany";
+	});
+	
 </script>
 
 <%@ include file="../layout/footer.jsp"%>
