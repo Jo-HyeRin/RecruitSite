@@ -12,13 +12,16 @@
 				type="button">아이디 중복체크</button>
 		</div>
 		<div class="mb-3">
-			◆비밀번호 <input id="loginPassword" type="text" class="form-control"
+			◆비밀번호 
+			<input id="loginPassword" type="password" class="form-control"
 				placeholder="비밀번호를 입력해주세요">
 		</div>
 		
 		<div class="mb-3">
 			◆비밀번호 확인
-				<input type="text" class="form-control"
+			<span id="passwordCheck" style="visibility: hidden; color: tomato;">
+				-----비밀번호가 같지 않습니다! </span>
+			<input id="passwordConfirm" type="password" class="form-control"
 				placeholder="비밀번호를 한 번 더 입력해주세요">
 		</div>
 
@@ -119,6 +122,19 @@
 			});
 		}
 	});
+	
+	// 패스워드 일치 여부 체크
+	$("#passwordConfirm").keyup((event) => {
+		event.preventDefault();
+		if ($("#loginPassword").val() != $("#passwordConfirm").val()) {
+			$("#passwordCheck").css("visibility", "visible");
+			$("#btnSave").attr(`disabled`, true);
+		} else {
+			$("#passwordCheck").css("visibility", "hidden");
+			$("#btnSave").removeAttr(`disabled`);
+		}
+	});
+	
 </script>
 
 <%@ include file="../layout/footer.jsp"%>
