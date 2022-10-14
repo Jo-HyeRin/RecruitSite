@@ -11,5 +11,21 @@
 		company_phone_number, company_picture, company_address, created_at)
 		VALUES(#{companyId}, #{companyEmail}, #{companyPhoneNumber}, #{companyPicture}, #{companyAddress}, NOW())
 	</insert>
+	
+	<select
+		id="findByAddress" resultType="site.metacoding.miniproject.web.dto.response.CompanyAddressDto">
+		SELECT d.company_id,
+		d.company_detail_id,
+		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',1),',',-1) AS
+		zip_code,
+		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',2),',',-1) AS
+		road_name,
+		SUBSTRING_INDEX(SUBSTRING_INDEX(company_address,',',3),',',-1) AS
+		detail_address
+		FROM company_detail d 
+		LEFT OUTER JOIN company c
+		ON d.company_id = c.company_id
+		WHERE c.company_id= #{companyId}
+	</select>
 
 </mapper>

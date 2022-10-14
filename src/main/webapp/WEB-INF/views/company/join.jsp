@@ -38,9 +38,12 @@
 			◆사진<input id="companyPicture" type="text" class="form-control" placeholder="사진 입력 자리">
 		</div>
 
-		<div class="mb-3">
-			◆주소<input id="companyAddress" type="text" class="form-control" placeholder="주소 입력 자리">
-		</div>
+		<div class="mb-3">◆주소</div>
+		<input id="postcode" type="text" placeholder="우편번호" readonly onclick="findAddr()">
+		<button id="btnAddress" type="button" class="btn btn-primary" onclick="findAddr()">우편번호찾기</button>
+		<br> 
+		<input id="addr" type="text" placeholder="주소" style="width: 620px;" readonly>
+		<input id="detailAddress" type="text"  placeholder="상세주소" style="width: 620px;">
 
 	</form>
 	
@@ -62,7 +65,7 @@
 			companyPhoneNumber: $("#companyPhoneNumber").val(),
 			companyEmail: $("#companyEmail").val(),
 			companyPicture: $("#companyPicture").val(),
-			companyAddress: $("#companyAddress").val()
+			companyAddress: $("#postcode").val() + "," + $("#addr").val() + "," + $("#detailAddress").val()
 		};
 	
 		$.ajax("/join/company", {
@@ -118,7 +121,30 @@
 			$("#btnJoin").removeAttr(`disabled`);
 		}
 	});
+	
+	// 주소 불러오기
+	function findAddr() {
+		new daum.Postcode({
+				oncomplete: function(data) {
+					// 검색결과 항목을 선택했을때 실행할 코드
+					// 내려오는 변수가 값이 없는 경우엔 공백('')값을 가짐
+					
+					let roadAddr = data.roadAddress; // 도로명 주소 변수
+					let jibunAddr = data.jibunAddress; // 지번 주소 변수
+					
+					// 우편번호와 주소 정보를 해당 필드에 넣는다.
+					document.getElementById('postcode').value = data.zonecode;
+					if (roadAddr !== '') {
+						document.getElementById("addr").value = roadAddr;
+					} else if (jibunAddr !== '') {
+						document.getElementById("addr").value = jibunAddr;
+					}
+				}
+		}).open();
+	}
 
 </script>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 
 <%@ include file="../layout/footer.jsp"%>
